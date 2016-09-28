@@ -84,7 +84,7 @@ public class Principal {
         System.out.print("***************************************\n");
         System.out.print("***** MODEL AFTER RULES INFERENCE *****\n");
         System.out.print("***************************************\n");
-//        ontoModel.write(System.out, "TURTLE");
+        ontoModel.write(System.out, "TURTLE");
         
 
         
