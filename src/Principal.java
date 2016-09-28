@@ -56,7 +56,7 @@ public class Principal {
         System.out.print("*****     MODEL READ FROM FILE            *****\n");
         System.out.print("***********************************************\n");
 
-        model.write(System.out, "TURTLE");
+//        model.write(System.out, "TURTLE");
 
         
         // ******* LOAD ONTOLOGY *******
