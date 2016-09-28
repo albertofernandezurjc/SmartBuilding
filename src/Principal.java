@@ -76,7 +76,7 @@ public class Principal {
 		
         ontoModel = loadRules(ontoModel, inputFileNameR1);
 
-        queryModel(ontoModel, inputFileNameQ2);
+//        queryModel(ontoModel, inputFileNameQ2);
         
         ontoModel = loadRules(ontoModel, inputFileNameR2);
 
