@@ -1,0 +1,17 @@
+PREFIX : <http://www.ia.urjc.es/ontologies/evacuation.owl#> 
+
+
+SELECT ?user ?route ?minLength
+WHERE {
+    ?route :usableBy  ?user . 
+    ?route :length ?minLength .
+    {
+      SELECT ?user (MIN(?l) AS ?minLength)
+      WHERE {
+        ?route :usableBy  ?user .
+        ?route :length ?l .
+      } GROUP BY ?user
+    }
+}
+ORDER BY ?user
+

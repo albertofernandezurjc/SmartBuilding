@@ -1,0 +1,13 @@
+
+
+
+
+
+[usableRoute:
+	(?route :startingRouteFor  ?user ) 
+ 	noValue(?route :isNotPossibleFor ?user)
+	-> 
+	(?route :usableBy  ?user)
+  	print('UsableRoute: ', ?route, ' is usable by ', ?user)
+]
+

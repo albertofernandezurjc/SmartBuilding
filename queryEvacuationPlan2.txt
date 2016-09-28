@@ -1,0 +1,31 @@
+PREFIX : <http://www.ia.urjc.es/ontologies/evacuation.owl#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+SELECT ?user ?route ?minLength
+WHERE {
+     ?user   :locatedIn ?r1. 
+     ?route  rdf:type :EvacuationRoute. 
+     ?route  :startsIn  ?r1.
+     ?route  :path  ?path.
+    ?route  :length  ?minLength.
+    FILTER NOT EXISTS { 
+              ?rTmp :notAccessibleFor ?user.
+              ?path rdf:rest*/rdf:first ?rTmp. # listContains(?path,?rTmp)
+            }
+    
+    {
+      SELECT ?user (MIN(?l) AS ?minLength)
+      WHERE {
+     		?user   :locatedIn ?r1. 
+            		?route  rdf:type :EvacuationRoute. 
+            		?route  :startsIn  ?r1.
+			?route  :path  ?path.			
+            FILTER NOT EXISTS { 
+              ?rTmp :notAccessibleFor ?user.
+              ?path rdf:rest*/rdf:first ?rTmp. # listContains(?path,?rTmp)
+            }
+       		?route :length ?l .
+      } GROUP BY ?user
+    }
+}
+
