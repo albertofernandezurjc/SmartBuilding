@@ -1,9 +1,9 @@
 
-[notAccessibleFor_Handicapted:
-	(?user :hasHandicap :Wheelchair) 
+[notAccessibleFor_Disabled:
+	(?user :hasDisability :Wheelchair) 
 	(?section  rdf:type  :Staircase) 
    	->   
-  	print('Handicapted: ', ?s1, ' not Accessible For ', ?u1)
+  	print('Disabled: ', ?section, ' not Accessible For ', ?user)
    	(?section :notAccessibleFor ?user) 
 ]
 

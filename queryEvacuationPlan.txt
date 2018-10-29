@@ -10,8 +10,9 @@ WHERE {
       WHERE {
         ?route :usableBy  ?user .
         ?route :length ?l .
-      } GROUP BY ?user
+      } 
+      GROUP BY ?user
     }
 }
-ORDER BY ?user
+ORDER BY ?user ?minLength
 

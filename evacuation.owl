@@ -13,7 +13,7 @@
 
 
 # Example fig 1
-:bob		rdf:type		:SecurityGuard.
+<http://www.ia.urjc.es/ontologies/evacuation.owl#bob>	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>		:SecurityGuard.
 :bob		:locatedIn		:room1.
 :bob		:name			"Bob Smith".
 :bob		:age			30.
@@ -39,7 +39,7 @@
 # Examples Knowledge Bases
 
 :user1	  :accompaniedBy  	:user2;		
-		  :hasHandicap	:Wheelchair .	
+		  :hasDisability	:Wheelchair .	
 
 :room1  	rdf:type		:Room;
 			:connectedTo  	:room2;

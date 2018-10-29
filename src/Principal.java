@@ -1,21 +1,16 @@
 import java.io.*;
 
-import com.hp.hpl.jena.query.Query;
-import com.hp.hpl.jena.query.QueryExecution;
-import com.hp.hpl.jena.query.QueryExecutionFactory;
-import com.hp.hpl.jena.query.QueryFactory;
-import com.hp.hpl.jena.query.ResultSet;
-import com.hp.hpl.jena.query.ResultSetFormatter;
-import com.hp.hpl.jena.rdf.model.*;
-import com.hp.hpl.jena.reasoner.Reasoner;
-import com.hp.hpl.jena.reasoner.ReasonerRegistry;
-import com.hp.hpl.jena.reasoner.rulesys.GenericRuleReasoner;
-import com.hp.hpl.jena.reasoner.rulesys.Rule;
-import com.hp.hpl.jena.vocabulary.*;
 
-import com.hp.hpl.jena.util.FileManager;
-import com.hp.hpl.jena.util.PrintUtil;
 
+import org.apache.jena.query.*;
+import org.apache.jena.rdf.model.*;
+import org.apache.jena.reasoner.Reasoner;
+import org.apache.jena.reasoner.ReasonerRegistry;
+import org.apache.jena.reasoner.rulesys.GenericRuleReasoner;
+import org.apache.jena.reasoner.rulesys.Rule;
+
+import org.apache.jena.util.FileManager;
+import org.apache.jena.util.PrintUtil;
 
 public class Principal {
 
@@ -67,7 +62,7 @@ public class Principal {
         System.out.print("***** MODEL AFTER RDFS Reasoner INFERENCE *****\n");
         System.out.print("***********************************************\n");
         
-//        ontoModel.write(System.out, "TURTLE");
+        ontoModel.write(System.out, "TURTLE");
         
 	    System.out.print("*****    NotAccessibleFor     *****\n");
         queryModel(ontoModel, inputFileNameQ2);
