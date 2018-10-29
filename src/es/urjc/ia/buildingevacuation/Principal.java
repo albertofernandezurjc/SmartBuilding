@@ -1,6 +1,7 @@
+package es.urjc.ia.buildingevacuation;
+
+
 import java.io.*;
-
-
 
 import org.apache.jena.query.*;
 import org.apache.jena.rdf.model.*;
@@ -14,19 +15,19 @@ import org.apache.jena.util.PrintUtil;
 
 public class Principal {
 
-	static final String inputFileName  = "evacuation.owl"; // tambi�n admite URI
+	static final String inputFileName  = "ontologies/evacuation.owl"; // tambi�n admite URI
 
 	// Queries Building Evacuation
 //	static final String inputFileNameQ1  = "query.txt";
 //	static final String inputFileNameQ1  = "queryFindPlan.txt";
-	static final String inputFileNameQ1  = "queryEvacuationPlan.txt";
+	static final String inputFileNameQ1  = "queries/queryEvacuationPlan.txt";
 //	static final String inputFileNameQ1  = "queryEvacuationPlan2.txt";
-	static final String inputFileNameQ2  = "queryNotAccessibleFor.txt";
+	static final String inputFileNameQ2  = "queries/queryNotAccessibleFor.txt";
 
 //	static final String inputFileNameR1  = "rulesSmartBuildingNotAccessible.txt";
 //	static final String inputFileNameR1  = "rulesSmartBuilding.txt";
-	static final String inputFileNameR1  = "rules1.txt";
-	static final String inputFileNameR2  = "rules2.txt";
+	static final String inputFileNameR1  = "rules/rules1.txt";
+	static final String inputFileNameR2  = "rules/rules2.txt";
 
 	/**
 	 * @param args
@@ -51,7 +52,7 @@ public class Principal {
         System.out.print("*****     MODEL READ FROM FILE            *****\n");
         System.out.print("***********************************************\n");
 
-        model.write(System.out, "TURTLE");
+//        model.write(System.out, "TURTLE");
 
         
         // ******* LOAD ONTOLOGY *******
@@ -62,15 +63,16 @@ public class Principal {
         System.out.print("***** MODEL AFTER RDFS Reasoner INFERENCE *****\n");
         System.out.print("***********************************************\n");
         
-        ontoModel.write(System.out, "TURTLE");
+//        ontoModel.write(System.out, "TURTLE");
         
-	    System.out.print("*****    NotAccessibleFor     *****\n");
+	    System.out.print("*****    NotAccessibleFor (without Rules)    *****\n");
         queryModel(ontoModel, inputFileNameQ2);
 
 		// *********** JENA Rules **********
 		
         ontoModel = loadRules(ontoModel, inputFileNameR1);
 
+	    System.out.print("*****    NotAccessibleFor (with Rules)    *****\n");
         queryModel(ontoModel, inputFileNameQ2);
         
         ontoModel = loadRules(ontoModel, inputFileNameR2);

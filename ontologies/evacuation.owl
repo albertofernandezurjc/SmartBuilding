@@ -1,0 +1,134 @@
+@prefix : <http://www.ia.urjc.es/ontologies/evacuation.owl#> .
+@prefix ev: <http://www.ia.urjc.es/ontologies/evacuation.owl#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl2xml: <http://www.w3.org/2006/12/owl2-xml#> .
+@base <http://www.ia.urjc.es/ontologies/evacuation.owl#> .
+
+<http://www.ia.urjc.es/ontologies/evacuation.owl#> rdf:type owl:Ontology .
+
+
+
+# Example fig 1
+:bob		rdf:type		:SecurityGuard.
+:bob		:locatedIn		:room1.
+:bob		:name			"Bob Smith".
+:bob		:age			30.
+
+:SecurityGuard	rdfs:subClassOf	:Personnel.
+
+:Personnel	rdfs:subClassOf	:Person.
+
+
+
+# Example RDFS
+:locatedIn	rdf:type		rdfs:Property;
+			rdfs:domain		:Person;
+			rdfs:range		:Location.
+
+:locatedIn	rdf:type		owl:FunctionalProperty .
+
+			
+:Room  		rdfs:subClassOf	:Location.
+
+
+# Examples Knowledge Bases
+
+# **** User Preferences ****
+
+:user1	  :accompaniedBy  	:user2;		
+		  :hasDisability	:Wheelchair .	
+
+
+# **** Building Topology ****
+
+:connectedTo	rdf:type		owl:SymmetricProperty .
+
+:Staircase	rdfs:subClassOf	:Location;
+			rdfs:subclassOf	:Exit.	
+
+:room2  		rdf:type		:Room.
+
+:room1  		rdf:type		:Room;
+             	:connectedTo  	:room2;
+				:connectedTo  	:floor1;
+				:connectedTo  	:staircase1;
+             	:capacity		50.
+
+:staircase1	rdf:type		:Staircase ;
+			:connectedTo	:room1 .
+
+
+
+# ***** Emergency Ontology ****
+
+:floor1	:notUsableFor :Wheelchair .
+
+
+
+
+
+
+# Routes
+
+:route1 rdf:type :EvacuationPlan; 
+	   :startsIn :room1;	   :endsIn :exit1;	   :length 10;       :path   (:room1 :floor1 :room7 :exit1) .
+
+:route2		rdf:type		:EvacuationRoute;		:startsIn		:room1;		:endsIn		:exit2;		:length		20;		:path		(:room1 :floor2 :room2 :exit2) .
+
+:route3		rdf:type		:EvacuationRoute;
+		:startsIn	:room2;
+		:endsIn		:exit2;
+		:length		30;
+		:path		(:room1 :floor2 :exit2) .
+
+:route4		rdf:type		:EvacuationRoute;
+		:startsIn	:room2;
+		:endsIn		:exit2;
+		:length		40;
+		:path		(:room2 :room1 :floor2 :exit2) .
+
+:route5		rdf:type		:EvacuationRoute;
+		:length		50.
+
+:route6		rdf:type		:EvacuationRoute;
+		:length		60.
+
+:route7		rdf:type		:EvacuationRoute;
+		:length		40.
+
+
+#:user1 :hasPossibleRoute :route1, :route2, :route3.
+#:user2 :hasPossibleRoute :route2, :route3, :route4.
+#:user3 :hasPossibleRoute :route3, :route4, :route5.
+#:user4 :hasPossibleRoute :route4, :route5, :route6, :route7.
+
+:room1 :connectedTo :room2.
+:room2 :connectedTo :room3.
+:room3 :connectedTo :room4.
+:room4 :connectedTo :exit1.
+
+:exit1 rdf:type :Exit.
+
+:TrickTest :notAccessibleFor :user1.
+
+
+# **** Current situation ****
+
+:user1  	:locatedIn		:room1 .	
+:user2  	:locatedIn		:room2 .	
+:user3 		:locatedIn 		:room2.
+:user4		:locatedIn 		:room2.
+
+:room1  	:occupancy		40 .	
+
+:room2  	:emergencyState :panic ;
+			:occupancy	0 .	
+
+
+
+
+

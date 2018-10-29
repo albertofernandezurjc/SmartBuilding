@@ -1,0 +1,13 @@
+PREFIX : <http://www.ia.urjc.es/ontologies/evacuation.owl#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+SELECT *
+WHERE {
+#     ?user   :locatedIn ?r1. 
+     ?route  rdf:type :EvacuationRoute. 
+     ?route  :startsIn  ?ini.
+     ?route  :path  ?path.
+    ?route  :length  ?minLength.
+      ?path rdf:rest*/rdf:first ?r1.
+ }
+ 
