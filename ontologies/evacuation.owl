@@ -12,7 +12,7 @@
 
 
 
-# Example fig 1
+# Example paper
 :bob		rdf:type		:SecurityGuard.
 :bob		:locatedIn		:room1.
 :bob		:name			"Bob Smith".
